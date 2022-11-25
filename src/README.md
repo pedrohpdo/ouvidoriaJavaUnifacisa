@@ -6,7 +6,7 @@ Desenvolvimento de uma aplicaçãoa CRUD com uma implementação de um sistema d
 Para também usar essa aplicação, close o repositório com:
 
 ```bash
-$ git clone https://github.com/pedrohpdo/P1Facisa_SAC
+$ git clone https://github.com/pedrohpdo/ouvidoriaJavaUnifacisa
 ```
 
 Dentro do MySQL Workbench crie uma nova conexão com o user _root_ e o password _root_, depois, crie as tabelas com os seguintes comandos:
@@ -27,7 +27,6 @@ CREATE TABLE feedbacks (
 ```
 Depois é só rodar o projeto através do próprio eclipse
 ```
-
 ## Tecnologias Usadas
 
 - Java
