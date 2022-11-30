@@ -72,13 +72,18 @@ public class Claims {
 
 		claimsList = execute.getFeedbacks("Reclamação");
 
-		if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToDelete - 1)) {
+		try {
+			
+			if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToDelete - 1)) {
+				return false;
+
+			} else {
+				execute.deleteFeedbacks(claimsList.get(idKeyToDelete - 1).getId());
+				return true;
+
+			}
+		} catch (IndexOutOfBoundsException e) {
 			return false;
-
-		} else {
-			execute.deleteFeedbacks(claimsList.get(idKeyToDelete - 1).getId());
-			return true;
-
 		}
 
 	}
@@ -94,17 +99,21 @@ public class Claims {
 
 		claimsList = execute.getFeedbacks("Reclamação");
 
-		if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToUpdate - 1)) {
+		try {
+			if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToUpdate - 1)) {
+				return false;
+
+			} else {
+				execute.updateFeedback(newFeedback, claimsList.get(idKeyToUpdate - 1).getId());
+				return true;
+
+			}
+		} catch (IndexOutOfBoundsException e) {
 			return false;
-
-		} else {
-			execute.updateFeedback(newFeedback, claimsList.get(idKeyToUpdate - 1).getId());
-			return true;
-
 		}
 
 	}
-
+	
 	public void deleteAllFeedbacks() {
 		execute.deleteAllfeedbacks();
 	}

@@ -63,13 +63,17 @@ public class Compliments {
 	public boolean deleteCompliment(int idKeyToDelete) {
 		complimentsList = execute.getFeedbacks("Elogio");
 
-		if (complimentsList.isEmpty() && !containsIndex(complimentsList, idKeyToDelete - 1)) {
+		try {
+			if (complimentsList.isEmpty() && !containsIndex(complimentsList, idKeyToDelete - 1)) {
+				return false;
+
+			} else {
+				execute.deleteFeedbacks(complimentsList.get(idKeyToDelete - 1).getId());
+				return true;
+
+			}
+		} catch (IndexOutOfBoundsException e) {
 			return false;
-
-		} else {
-			execute.deleteFeedbacks(complimentsList.get(idKeyToDelete - 1).getId());
-			return true;
-
 		}
 	}
 	
@@ -83,12 +87,16 @@ public class Compliments {
 	public boolean updateCompliment(int idKeyToUpdate, String newFeedback) {
 		complimentsList = execute.getFeedbacks("Elogio");
 
-		if (complimentsList.isEmpty() && !containsIndex(complimentsList, idKeyToUpdate - 1)) {
+		try {
+			if (complimentsList.isEmpty() && !containsIndex(complimentsList, idKeyToUpdate - 1)) {
+				return false;
+				
+			} else {
+				execute.updateFeedback(newFeedback, complimentsList.get(idKeyToUpdate - 1).getId());
+				return true;
+			}
+		} catch (IndexOutOfBoundsException e) {
 			return false;
-			
-		} else {
-			execute.updateFeedback(newFeedback, complimentsList.get(idKeyToUpdate - 1).getId());
-			return true;
 		}
 
 	}

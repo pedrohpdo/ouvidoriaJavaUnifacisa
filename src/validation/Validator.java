@@ -38,6 +38,7 @@ public class Validator {
 
 			if (stringToRead.isEmpty()) {
 				System.err.println("Digite um valor válido!");
+
 			} else {
 				return stringToRead.trim();
 			}
@@ -75,7 +76,8 @@ public class Validator {
 				}
 
 			} catch (InputMismatchException e) {
-				System.err.println("Digite valor inteiro válido");
+				System.err.println("Digite valor inteiro válido (Exception)");
+				System.out.println(e.getLocalizedMessage());
 			}
 			input.nextLine();
 
@@ -92,9 +94,14 @@ public class Validator {
 	private static int integerTrim(int number) {
 
 		String numberCheck = Integer.toString(number).trim();
-		int numberChecked = Integer.parseInt(numberCheck);
 
-		return numberChecked;
+		if (numberCheck.isEmpty()) {
+			throw new InputMismatchException("Número vázio, erro");
+		} else {
+			int numberChecked = Integer.parseInt(numberCheck);
+
+			return numberChecked;
+		}
 
 	}
 }

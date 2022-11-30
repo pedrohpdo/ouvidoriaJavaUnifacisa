@@ -56,13 +56,17 @@ public class Suggestions {
 	public boolean deleteSuggestion(int idKeyToDelete) {
 		suggestionsList = execute.getFeedbacks("Sugestão");
 
-		if (suggestionsList.isEmpty() && !containsIndex(suggestionsList, idKeyToDelete - 1)) {
+		try {
+			if (suggestionsList.isEmpty() && !containsIndex(suggestionsList, idKeyToDelete - 1)) {
+				return false;
+
+			} else {
+				execute.deleteFeedbacks(suggestionsList.get(idKeyToDelete - 1).getId());
+				return true;
+
+			}
+		} catch (IndexOutOfBoundsException e) {
 			return false;
-
-		} else {
-			execute.deleteFeedbacks(suggestionsList.get(idKeyToDelete - 1).getId());
-			return true;
-
 		}
 	}
 
