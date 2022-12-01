@@ -86,8 +86,11 @@ public class Validator {
 
 	/**
 	 * 
-	 * @param number
-	 * @return
+	 * Método auxiliar que remove os espaços em branco de um número inteiro passado
+	 * pelo usuário
+	 * 
+	 * @param number numero que será verificado
+	 * @return o número sem os espaços
 	 * 
 	 */
 

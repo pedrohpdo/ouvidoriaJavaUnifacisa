@@ -1,9 +1,9 @@
 package ouvidoria;
 
 import validation.Validator;
-import categories.Claims;
-import categories.Compliments;
-import categories.Suggestions;
+import categories.Reclamacao;
+import categories.Elogio;
+import categories.Sugestao;
 import formatter.Formatter;
 
 public class Main {
@@ -13,9 +13,9 @@ public class Main {
 		boolean isRunning = true;
 
 		Formatter formatter = new Formatter();
-		Claims claims = new Claims();
-		Compliments compliments = new Compliments();
-		Suggestions suggestions = new Suggestions();
+		Reclamacao claims = new Reclamacao();
+		Elogio compliments = new Elogio();
+		Sugestao suggestions = new Sugestao();
 		Validator validator = new Validator();
 
 		while (isRunning) {
@@ -29,7 +29,7 @@ public class Main {
 			switch (principalCommand) {
 
 			case ("1"):
-
+				
 				System.out.println();
 				System.out.println(formatter.headline2("Adicionar"));
 				System.out.println(formatter.categoriesMenu());
