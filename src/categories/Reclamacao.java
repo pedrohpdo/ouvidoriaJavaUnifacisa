@@ -114,11 +114,11 @@ public class Reclamacao {
 
 		try {
 
-			if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToDelete - 1)) {
+			if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToDelete)) {
 				return false;
 
 			} else {
-				execute.deleteFeedbacks(claimsList.get(idKeyToDelete - 1).getId());
+				execute.deleteFeedbacks(claimsList.get(idKeyToDelete).getId());
 				return true;
 
 			}
@@ -150,11 +150,11 @@ public class Reclamacao {
 		claimsList = execute.getFeedbacks("Reclamação");
 
 		try {
-			if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToUpdate - 1)) {
+			if (claimsList.isEmpty() && !containsIndex(claimsList, idKeyToUpdate)) {
 				return false;
 
 			} else {
-				execute.updateFeedback(newFeedback, claimsList.get(idKeyToUpdate - 1).getId());
+				execute.updateFeedback(newFeedback, claimsList.get(idKeyToUpdate).getId());
 				return true;
 
 			}

@@ -140,13 +140,14 @@ public class Elogio {
 		complimentsList = execute.getFeedbacks("Elogio");
 
 		try {
-			if (complimentsList.isEmpty() && !containsIndex(complimentsList, idKeyToUpdate - 1)) {
+			if (complimentsList.isEmpty() && !containsIndex(complimentsList, idKeyToUpdate)) {
 				return false;
 
 			} else {
-				execute.updateFeedback(newFeedback, complimentsList.get(idKeyToUpdate - 1).getId());
+				execute.updateFeedback(newFeedback, complimentsList.get(idKeyToUpdate).getId());
 				return true;
 			}
+			
 		} catch (IndexOutOfBoundsException e) {
 			return false;
 		}

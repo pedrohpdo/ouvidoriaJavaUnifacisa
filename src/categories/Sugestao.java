@@ -111,11 +111,11 @@ public class Sugestao {
 		suggestionsList = execute.getFeedbacks("Sugestão");
 
 		try {
-			if (suggestionsList.isEmpty() && !containsIndex(suggestionsList, idKeyToDelete - 1)) {
+			if (suggestionsList.isEmpty() && !containsIndex(suggestionsList, idKeyToDelete)) {
 				return false;
 
 			} else {
-				execute.deleteFeedbacks(suggestionsList.get(idKeyToDelete - 1).getId());
+				execute.deleteFeedbacks(suggestionsList.get(idKeyToDelete).getId());
 				return true;
 
 			}
@@ -142,11 +142,11 @@ public class Sugestao {
 	public boolean updateSuggestion(int idKeyToUpdate, String newFeedback) {
 		suggestionsList = execute.getFeedbacks("Sugestão");
 
-		if (suggestionsList.isEmpty() && !containsIndex(suggestionsList, idKeyToUpdate - 1)) {
+		if (suggestionsList.isEmpty() && !containsIndex(suggestionsList, idKeyToUpdate)) {
 			return false;
 
 		} else {
-			execute.updateFeedback(newFeedback, suggestionsList.get(idKeyToUpdate - 1).getId());
+			execute.updateFeedback(newFeedback, suggestionsList.get(idKeyToUpdate).getId());
 			return true;
 
 		}

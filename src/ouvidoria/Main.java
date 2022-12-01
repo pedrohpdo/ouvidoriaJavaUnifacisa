@@ -140,7 +140,7 @@ public class Main {
 					System.out.println(claims.getClaims());
 
 					keyToDelete = validator.integerValidation("Deseja apagar: ");
-					System.out.println(claims.deleteClaim(keyToDelete)
+					System.out.println(claims.deleteClaim(keyToDelete - 1)
 							? formatter.headline2("Manifestação apagada com sucesso!")
 							: formatter.headline2("Não foi possível deletar sua manifestação. Tente novamente!"));
 					break;
@@ -151,7 +151,7 @@ public class Main {
 
 					keyToDelete = validator.integerValidation("Deseja apagar: ");
 
-					System.out.println(compliments.deleteCompliment(keyToDelete)
+					System.out.println(compliments.deleteCompliment(keyToDelete - 1)
 							? formatter.headline2("Manifestação apagada com sucesso!")
 							: formatter.headline2("Não foi possível deletar sua manifestação. Tente novamente!"));
 					break;
@@ -162,7 +162,7 @@ public class Main {
 
 					keyToDelete = validator.integerValidation("Deseja apagar: ");
 
-					System.out.println(suggestions.deleteSuggestion(keyToDelete)
+					System.out.println(suggestions.deleteSuggestion(keyToDelete - 1)
 							? formatter.headline2("Manifestação apagada com sucesso!")
 							: formatter.headline2("Não foi possível deletar sua manifestação. Tente novamente!"));
 
@@ -201,7 +201,7 @@ public class Main {
 					int indexOfClaimsToUpdate = validator.integerValidation("Posição a ser alterada: ");
 					String newClaim = validator.stringValidation("Digite sua alteração: ");
 
-					System.out.println(claims.updateClaim(indexOfClaimsToUpdate, newClaim)
+					System.out.println(claims.updateClaim(indexOfClaimsToUpdate - 1, newClaim)
 							? formatter.headline2("Dados alterados com sucesso!")
 							: formatter.headline2("Não foi possível alterar os dados. Tente novamente!"));
 
@@ -216,8 +216,6 @@ public class Main {
 					int indexOfComplimentsToUpdate = validator.integerValidation("Posição a ser alterada: ");
 					String newCompliment = validator.stringValidation("Digite sua alteração: ");
 
-					compliments.updateCompliment(indexOfComplimentsToUpdate, newCompliment);
-
 					System.out.println(compliments.updateCompliment(indexOfComplimentsToUpdate - 1, newCompliment)
 							? formatter.headline2("Dados alterados com sucesso!")
 							: formatter.headline2("Não foi possível alterar os dados. Tente novamente!"));
@@ -226,14 +224,12 @@ public class Main {
 
 				case ("3"):
 
-					System.out.println(formatter.headline2("Reclamações"));
-					System.out.println(compliments.getCompliments());
+					System.out.println(formatter.headline2("Sugestões"));
+					System.out.println(suggestions.getSuggestions());
 					System.out.println();
 
-					int indexOfSuggetionsToUpdate = validator.integerValidation("Posição a ser alterada");
+					int indexOfSuggetionsToUpdate = validator.integerValidation("Posição a ser alterada: ");
 					String newSuggestion = validator.stringValidation("Digite sua alteração: ");
-
-					suggestions.updateSuggestion(indexOfSuggetionsToUpdate, newSuggestion);
 
 					System.out.println(suggestions.updateSuggestion(indexOfSuggetionsToUpdate - 1, newSuggestion)
 							? formatter.headline2("Dados alterados com sucesso!")
