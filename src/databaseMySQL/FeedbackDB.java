@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.SQLException;
-import feedback.Feedback;
+import feedback.Category;
 
 /**
  * 
@@ -17,7 +17,7 @@ import feedback.Feedback;
  *
  */
 
-public class FeedbackDB{
+public class FeedbackDB implements interfaceDB {
 
 	Connection connection;
 	String sqlCommand;
@@ -33,7 +33,8 @@ public class FeedbackDB{
 	 *                 para serem adicionadas no Banco de Dados
 	 */
 
-	public void setFeedback(Feedback feedback) {
+	@Override
+	public void addData(Category feedback) {
 
 		try {
 			connection = ConnectionDB.openConnection();
@@ -43,7 +44,7 @@ public class FeedbackDB{
 
 			cursor.setString(1, feedback.getType());
 			cursor.setString(2, feedback.getAuthor());
-			cursor.setString(3, feedback.getFeedback());
+			cursor.setString(3, feedback.getDescription());
 
 			cursor.execute();
 			cursor.close();
@@ -70,27 +71,27 @@ public class FeedbackDB{
 	 *         respectivas classes
 	 * 
 	 */
+	@Override
+	public ArrayList<Category> getData(String typeToPrint) {
 
-	public ArrayList<Feedback> getFeedbacks(String typeToPrint) {
-
-		ArrayList<Feedback> feedbacksReturned = new ArrayList<Feedback>();
+		ArrayList<Category> feedbacksReturned = new ArrayList<Category>();
 
 		switch (typeToPrint) {
 
-		case ("Reclamação"):
-			sqlCommand = "SELECT * FROM feedbacks WHERE type = 'Reclamação'";
-			break;
-		case ("Elogio"):
-			sqlCommand = "SELECT * FROM feedbacks WHERE type = 'Elogio'";
-			break;
+			case ("Reclamação"):
+				sqlCommand = "SELECT * FROM feedbacks WHERE type = 'Reclamação'";
+				break;
+			case ("Elogio"):
+				sqlCommand = "SELECT * FROM feedbacks WHERE type = 'Elogio'";
+				break;
 
-		case ("Sugestão"):
-			sqlCommand = "SELECT * FROM feedbacks WHERE type = 'Sugestão'";
-			break;
+			case ("Sugestão"):
+				sqlCommand = "SELECT * FROM feedbacks WHERE type = 'Sugestão'";
+				break;
 
-		case ("All"):
-			sqlCommand = "SELECT * FROM feedbacks";
-			break;
+			case ("All"):
+				sqlCommand = "SELECT * FROM feedbacks";
+				break;
 		}
 
 		try {
@@ -106,7 +107,7 @@ public class FeedbackDB{
 				String type = dataFeedbacks.getString("type");
 				int id = dataFeedbacks.getInt("id");
 
-				Feedback newFeedback = new Feedback(feedback, type, author);
+				Category newFeedback = new Category(feedback, type, author);
 				newFeedback.setId(id);
 
 				feedbacksReturned.add(newFeedback);
@@ -132,8 +133,8 @@ public class FeedbackDB{
 	 *                    sobreposta a uma já existente no Bando de Dados
 	 * @param idKey       campo "id" no qual representa a linha que vai ser alterada
 	 */
-
-	public void updateFeedback(String newFeedback, int idKey) {
+	@Override
+	public void updateData(String newFeedback, int idKey) {
 		sqlCommand = "UPDATE feedbacks SET description = ? where id = ?";
 
 		try {
@@ -160,8 +161,9 @@ public class FeedbackDB{
 	 * @param idKey id referente a linha que será apagada
 	 */
 
-	public void deleteFeedbacks(int idKey) {
-		
+	@Override
+	public void deleteData(int idKey) {
+
 		sqlCommand = "DELETE FROM feedbacks WHERE id = ?";
 
 		try {
@@ -179,9 +181,10 @@ public class FeedbackDB{
 		}
 
 	}
-	
-	public void deleteAllfeedbacks() {
-		
+
+	@Override
+	public void deleteAllData() {
+
 		sqlCommand = "DELETE FROM feedbacks";
 
 		try {
@@ -194,9 +197,9 @@ public class FeedbackDB{
 			connection.close();
 
 		} catch (SQLException e) {
-			
+
 			throw new RuntimeException(e);
-			
+
 		}
 	}
 

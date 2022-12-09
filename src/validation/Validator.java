@@ -2,6 +2,8 @@ package validation;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import feedback.Category;
 
 /**
  * 
@@ -94,6 +96,9 @@ public class Validator {
 	 * 
 	 */
 
+
+
+
 	private static int integerTrim(int number) {
 
 		String numberCheck = Integer.toString(number).trim();
@@ -105,6 +110,16 @@ public class Validator {
 
 			return numberChecked;
 		}
-
 	}
+
+	public boolean containsIndex(ArrayList<Category> list, int keyToCheck) {
+
+        for (int i = 0; i < list.size(); i++) {
+            if (keyToCheck == i) {
+                return true;
+            }
+        }
+        return false;
+
+    }
 }

@@ -13,9 +13,8 @@ package feedback;
 
 public class Feedback {
 
-	private String feedback, type, author;
+	private String description, author;
 	private int id;
-	
 
 	/**
 	 * 
@@ -28,37 +27,27 @@ public class Feedback {
 	 * no sistema.
 	 * 
 	 * 
-	 * @param feedback registro em texto da descrição do feedback
-	 * @param type     categoria do feedback: Reclamação, Elogio ou Sugestão
+	 * @param description registro em texto da descrição do feedback
 	 * @param author   nome do usuário que acabou de fazer o registro
 	 * 
 	 */
 
-	public Feedback(String feedback, String type, String author) {
-		this.feedback = feedback;
-		this.type = type;
+	public Feedback(String description, String author) {
+		this.description = description;
 		this.author = author;
 	}
-	
+
 	/**
 	 * 
 	 * Métodos Auxiliares
 	 */
-	
-	public String getFeedback() {
-		return feedback;
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setFeedback(String feedback) {
-		this.feedback = feedback;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setDescription(String feedback) {
+		this.description = feedback;
 	}
 
 	public String getAuthor() {
@@ -68,7 +57,7 @@ public class Feedback {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -80,7 +69,7 @@ public class Feedback {
 	@Override
 	public String toString() {
 
-		String toString = String.format("Type: %s | Author: %s | Feedback: %s", getType(), getAuthor(), getFeedback());
+		String toString = String.format("Type: %s | Feedback: %s", getAuthor(), getDescription());
 		return toString;
 	}
 
